@@ -1,7 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net471</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net461</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Helpers and extensions for Microsoft.Data.SqlClient</Description>
+    <Copyright>2019 © Dave Humphreys</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Authors>newky2k</Authors>
+    <Company>newky2k</Company>
+    <PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +19,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\System.Data.Common.Extensions\System.Data.Common.Extensions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
