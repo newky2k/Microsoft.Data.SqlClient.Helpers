@@ -22,7 +22,7 @@ namespace Microsoft.Data.SqlClient.Helpers
 
 
         #region Fields
-        private static Lazy<DataConnectionManager> mInstance = new Lazy<DataConnectionManager>(new DataConnectionManager());
+        private static Lazy<DataConnectionManager> mInstance = new Lazy<DataConnectionManager>(()=> new DataConnectionManager());
         private Func<string, String> mConnectionStringLoader;
 
         private Dictionary<string, string> _overrides = new Dictionary<string, string>();
