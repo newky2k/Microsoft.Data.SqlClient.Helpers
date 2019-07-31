@@ -544,7 +544,7 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// update one as an asynchronous operation.
+        /// Updates one data item as an asynchronous operation, without needing datbase script 
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
