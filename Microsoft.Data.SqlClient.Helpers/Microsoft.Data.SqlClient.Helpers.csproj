@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Helpers and extensions for Microsoft.Data.SqlClient</Description>
     <Copyright>2019 © Dave Humphreys</Copyright>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageLicenseFile></PackageLicenseFile>
     <Authors>newky2k</Authors>
     <Company>newky2k</Company>
     <PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
@@ -14,6 +14,7 @@
     <Version>1.0.19189.1-Preview</Version>
     <PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
     <Product>DSoft.Microsoft.Data.SqlClient.Helpers</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,13 +23,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\System.Data.Common.Extensions\System.Data.Common.Extensions.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\LICENSE">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
 </Project>
