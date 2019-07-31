@@ -328,3 +328,6 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+/Microsoft.Data.SqlClient.Helpers/Microsoft.Data.SqlClient.Helpers.xml
+/System.Data.Common.Extensions/System.Data.Common.Extensions.xml
