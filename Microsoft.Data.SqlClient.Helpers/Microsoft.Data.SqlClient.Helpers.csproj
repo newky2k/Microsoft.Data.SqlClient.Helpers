@@ -11,10 +11,13 @@
     <PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
     <RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
     <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <Version>1.0.19189.1-Preview</Version>
+    <PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
+    <Product>DSoft.Microsoft.Data.SqlClient.Helpers</Product>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.0.19128.1-Preview" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.0.19189.1-Preview" />
   </ItemGroup>
 
   <ItemGroup>
