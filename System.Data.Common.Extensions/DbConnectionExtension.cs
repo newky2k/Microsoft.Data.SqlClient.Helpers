@@ -15,7 +15,7 @@ namespace System.Data.Common
     {
         #region Non-Async
         /// <summary>
-        /// Does if the table or view existd
+        /// Checks if the table or view exists
         /// </summary>
         /// <typeparam name="T">Sub-class of DbConnection</typeparam>
         /// <param name="connection">The connection object</param>
@@ -35,11 +35,11 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// Executes the SQL script
+        /// Executes the database script
         /// </summary>
         /// <typeparam name="T">Sub-class of DbConnection</typeparam>
         /// <param name="connection">The connection. object</param>
-        /// <param name="sSql">The SQL script to execute</param>
+        /// <param name="sSql">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
@@ -71,9 +71,9 @@ namespace System.Data.Common
         /// <summary>
         /// Executes the query and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The SQL script to execute</param>
+        /// <param name="sSql">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
@@ -106,11 +106,11 @@ namespace System.Data.Common
 
 
         /// <summary>
-        /// Queries the specified s SQL.
+        /// Runs the specified database script and returns a DataTable with the results
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The SQL script to execute</param>
+        /// <param name="sSql">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
@@ -152,9 +152,9 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// Inserts the many.
+        /// Inserts multiple data items into the specified tables and columns without needing datbase script
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="data">The data dictionary</param>
@@ -226,13 +226,13 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// Gets the data table schema from table.
+        /// Gets the DataTable schema from table.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="transaction">Optional transaction</param>
-        /// <returns>DataTable.</returns>
+        /// <returns>DataTable</returns>
         public static DataTable GetDataTableSchemaFromTable<T>(this T connection, string tableViewName, DbTransaction transaction = null) where T : DbConnection
         {
             DataTable dtResult = new DataTable();
@@ -261,11 +261,11 @@ namespace System.Data.Common
         #region Async
 
         /// <summary>
-        /// execute as an asynchronous operation.
+        /// Executes the database script as an asynchronous operation.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The SQL script to execute</param>
+        /// <param name="sSql">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
@@ -298,11 +298,11 @@ namespace System.Data.Common
 
 
         /// <summary>
-        /// execute scalar as an asynchronous operation.
+        /// Executes the query as an asynchronous operation and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored. 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The SQL script to execute</param>
+        /// <param name="sSql">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
@@ -334,11 +334,11 @@ namespace System.Data.Common
 
 
         /// <summary>
-        /// execute insert as an asynchronous operation.
+        /// Execute an insert as an asynchronous operation.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The SQL script to execute</param>
+        /// <param name="sSql">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
@@ -353,11 +353,11 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// query as an asynchronous operation.
+        /// Runs the specified database script as an asynchronous operation and returns a DataTable with the results
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The SQL script to execute</param>
+        /// <param name="sSql">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
@@ -404,13 +404,13 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// Checks to see if the record already exists
+        /// Checks to see if the record already exists as an asynchronous operation
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
-        /// <param name="columnName">Name of the column</param>
-        /// <param name="value">The value</param>
+        /// <param name="columnName">Name of the column to compare</param>
+        /// <param name="value">The value to compare</param>
         /// <param name="timeout">The timeout</param>
         /// <returns>Task&lt;System.Boolean&gt;.</returns>
         public static async Task<bool> ExistsAsync<T>(this T connection, string tableViewName, string columnName, object value, int timeout = 30) where T : DbConnection
@@ -456,9 +456,9 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// exists as an asynchronous operation.
+        /// Checks to see if the record already exists as an asynchronous operation
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="columnName">Name of the column</param>
@@ -506,9 +506,9 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// insert one as an asynchronous operation.
+        /// Inserts one data item as an asynchronous operation, without needing datbase script 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="idColumn">The identifier column name</param>
@@ -546,7 +546,7 @@ namespace System.Data.Common
         /// <summary>
         /// update one as an asynchronous operation.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="idColumn">The identifier column</param>
@@ -584,9 +584,9 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// insert many as an asynchronous operation.
+        /// Inserts multiple data items into the specified tables and columns as an asynchronous operation, without needing datbase script
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="idColumn">The identifier column</param>
@@ -665,9 +665,9 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// insert many as an asynchronous operation.
+        /// Inserts multiple data items into the specified tables and columns as an asynchronous operation, without needing datbase script
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="data">The data dictionary</param>
@@ -739,9 +739,9 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// update many as an asynchronous operation.
+        /// Update multiple data items in the specified tables and columns as an asynchronous operation, without needing datbase script
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="idColumn">The identifier column</param>
@@ -802,9 +802,9 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// update many as an asynchronous operation.
+        /// Update multiple data items in the specified tables and columns as an asynchronous operation, without needing datbase script
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="whereParams">The where parameters.</param>
@@ -859,7 +859,7 @@ namespace System.Data.Common
 
 
         /// <summary>
-        /// Queries the data connection asynchronously and returns the whole DataSet
+        /// Runs the specified database script as an asynchronous operation and returns the whole DataSet
         /// </summary>
         /// <typeparam name="T">Sub-class of DbConnection</typeparam>
         /// <param name="connection">The connection object</param>
@@ -915,7 +915,7 @@ namespace System.Data.Common
         /// <summary>
         /// Creates a data adapter for the specific connection
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection objects</param>
         /// <returns>DbDataAdapter.</returns>
         /// <exception cref="ArgumentException">Could not locate factory matching supplied DbConnection;connection</exception>
@@ -940,7 +940,7 @@ namespace System.Data.Common
         /// <summary>
         /// Builds the where statement
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="command">The command object</param>
         /// <param name="whereParams">The where parameters dictionary where string is the column name and object is the value</param>
         /// <returns>System.String.</returns>
