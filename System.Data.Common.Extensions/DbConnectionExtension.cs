@@ -39,12 +39,12 @@ namespace System.Data.Common
         /// </summary>
         /// <typeparam name="T">Sub-class of DbConnection</typeparam>
         /// <param name="connection">The connection. object</param>
-        /// <param name="sSql">The database script to execute</param>
+        /// <param name="databaseScript">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
-        public static void Execute<T>(this T connection, string sSql, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
+        public static void Execute<T>(this T connection, string databaseScript, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
         {
             if (connection.State != ConnectionState.Open)
             {
@@ -59,7 +59,7 @@ namespace System.Data.Common
             }
 
             newCmq.CommandType = commandType;
-            newCmq.CommandText = sSql;
+            newCmq.CommandText = databaseScript;
             newCmq.CommandTimeout = timeout;
 
             if (pars != null)
@@ -73,13 +73,13 @@ namespace System.Data.Common
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The database script to execute</param>
+        /// <param name="databaseScript">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
         /// <returns>System.Object.</returns>
-        public static object ExecuteScalar<T>(this T connection, string sSql, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
+        public static object ExecuteScalar<T>(this T connection, string databaseScript, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
         {
             if (connection.State != ConnectionState.Open)
             {
@@ -94,7 +94,7 @@ namespace System.Data.Common
             }
 
             newCmq.CommandType = commandType;
-            newCmq.CommandText = sSql;
+            newCmq.CommandText = databaseScript;
             newCmq.CommandTimeout = timeout;
 
             if (pars != null)
@@ -110,13 +110,13 @@ namespace System.Data.Common
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The database script to execute</param>
+        /// <param name="databaseScript">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
         /// <returns>DataTable.</returns>
         /// <exception cref="AggregateException"></exception>
-        public static DataTable Query<T>(this T connection, string sSql, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30) where T : DbConnection
+        public static DataTable Query<T>(this T connection, string databaseScript, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30) where T : DbConnection
         {
 
             if (connection.State != ConnectionState.Open)
@@ -126,7 +126,7 @@ namespace System.Data.Common
 
             var newCmq = connection.CreateCommand();
             newCmq.CommandType = commandType;
-            newCmq.CommandText = sSql;
+            newCmq.CommandText = databaseScript;
             newCmq.CommandTimeout = timeout;
 
             if (pars != null)
@@ -144,7 +144,7 @@ namespace System.Data.Common
             }
             catch (Exception ex)
             {
-                var message = String.Format("Error occured running the query: {0}", sSql);
+                var message = String.Format("Error occured running the query: {0}", databaseScript);
 
                 throw new AggregateException(message, ex);
             }
@@ -152,12 +152,12 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// Inserts multiple data items into the specified tables and columns without needing datbase script
+        /// Inserts multiple data items into the specified tables and columns without needing database script
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
-        /// <param name="data">The data dictionary</param>
+        /// <param name="data">The data dictionary, string = ColumnName, object = value</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
         /// <exception cref="Exception">You must provide a non-null, non-empty dictionary to InsertManyAsync</exception>
@@ -202,21 +202,21 @@ namespace System.Data.Common
 
 
             //build the insert sql
-            var sSql = $"INSERT INTO {tableViewName} ";
+            var databaseScript = $"INSERT INTO {tableViewName} ";
 
-            var colsSql = "(";
+            var coldatabaseScript = "(";
 
-            colsSql += String.Join(",", colNames);
+            coldatabaseScript += String.Join(",", colNames);
 
-            colsSql += ") values (";
+            coldatabaseScript += ") values (";
 
-            colsSql += string.Join(",", parsList);
+            coldatabaseScript += string.Join(",", parsList);
 
-            colsSql += ")";
+            coldatabaseScript += ")";
 
-            sSql += colsSql;
+            databaseScript += coldatabaseScript;
 
-            comm.CommandText = sSql;
+            comm.CommandText = databaseScript;
 
             if (transaction != null)
                 comm.Transaction = transaction;
@@ -265,12 +265,12 @@ namespace System.Data.Common
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The database script to execute</param>
+        /// <param name="databaseScript">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
-        public static async Task ExecuteAsync<T>(this T connection, string sSql, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
+        public static async Task ExecuteAsync<T>(this T connection, string databaseScript, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
         {
             if (connection.State != ConnectionState.Open)
             {
@@ -284,7 +284,7 @@ namespace System.Data.Common
                 newCmq.Transaction = transaction;
             }
 
-            newCmq.CommandText = sSql;
+            newCmq.CommandText = databaseScript;
             newCmq.CommandType = commandType;
             newCmq.CommandTimeout = timeout;
 
@@ -302,13 +302,13 @@ namespace System.Data.Common
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The database script to execute</param>
+        /// <param name="databaseScript">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
         /// <returns>Task&lt;System.Object&gt;.</returns>
-        public static async Task<object> ExecuteScalarAsync<T>(this T connection, string sSql, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
+        public static async Task<object> ExecuteScalarAsync<T>(this T connection, string databaseScript, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
         {
             if (connection.State != ConnectionState.Open)
             {
@@ -322,7 +322,7 @@ namespace System.Data.Common
                 newCmq.Transaction = transaction;
             }
 
-            newCmq.CommandText = sSql;
+            newCmq.CommandText = databaseScript;
             newCmq.CommandType = commandType;
             newCmq.CommandTimeout = timeout;
 
@@ -334,19 +334,19 @@ namespace System.Data.Common
 
 
         /// <summary>
-        /// Execute an insert as an asynchronous operation.
+        /// Executes an insert as an asynchronous operation and returns the first column of the first row as an int
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The database script to execute</param>
+        /// <param name="databaseScript">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
         /// <returns>Task&lt;System.Int32&gt;.</returns>
-        public static async Task<int> ExecuteInsertAsync<T>(this T connection, string sSql, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
+        public static async Task<int> ExecuteInsertAsync<T>(this T connection, string databaseScript, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
         {
-            var res = await connection.ExecuteScalarAsync(sSql, pars, commandType, timeout, transaction);
+            var res = await connection.ExecuteScalarAsync(databaseScript, pars, commandType, timeout, transaction);
 
             return Convert.ToInt32(res);
 
@@ -357,12 +357,12 @@ namespace System.Data.Common
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The database script to execute</param>
+        /// <param name="databaseScript">The database script to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
         /// <returns>Task&lt;DataTable&gt;.</returns>
-        public static async Task<DataTable> QueryAsync<T>(this T connection, string sSql, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30) where T : DbConnection
+        public static async Task<DataTable> QueryAsync<T>(this T connection, string databaseScript, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30) where T : DbConnection
         {
             if (connection.State != ConnectionState.Open)
             {
@@ -371,7 +371,7 @@ namespace System.Data.Common
 
             var newCmq = connection.CreateCommand();
             newCmq.CommandType = commandType;
-            newCmq.CommandText = sSql;
+            newCmq.CommandText = databaseScript;
             newCmq.CommandTimeout = timeout;
 
             if (pars != null)
@@ -391,7 +391,7 @@ namespace System.Data.Common
                 }
                 catch (Exception ex)
                 {
-                    var message = String.Format("Error occured running the query: {0}", sSql);
+                    var message = String.Format("Error occured running the query: {0}", databaseScript);
 
                     throw new Exception(message, ex);
                 }
@@ -416,12 +416,12 @@ namespace System.Data.Common
         public static async Task<bool> ExistsAsync<T>(this T connection, string tableViewName, string columnName, object value, int timeout = 30) where T : DbConnection
         {
 
-            var sSql = $"SELECT {columnName} from {tableViewName}";
-            sSql += $" WHERE {columnName} = @Param1";
+            var databaseScript = $"SELECT {columnName} from {tableViewName}";
+            databaseScript += $" WHERE {columnName} = @Param1";
 
             var comm = connection.CreateCommand();
             comm.CommandType = CommandType.Text;
-            comm.CommandText = sSql;
+            comm.CommandText = databaseScript;
             comm.CommandTimeout = timeout;
 
             var par1 = comm.CreateParameter();
@@ -443,7 +443,7 @@ namespace System.Data.Common
                 }
                 catch (Exception ex)
                 {
-                    var message = String.Format("Error occured running the query: {0}", sSql);
+                    var message = String.Format("Error occured running the query: {0}", databaseScript);
 
                     throw new Exception(message, ex);
                 }
@@ -462,21 +462,21 @@ namespace System.Data.Common
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="columnName">Name of the column</param>
-        /// <param name="whereParams">The where parameters.</param>
+        /// <param name="whereParams">The where parameter dictionary, string = ColumnName, object = value</param>
         /// <param name="timeout">The timeout</param>
         /// <returns>Task&lt;System.Boolean&gt;.</returns>
         public static async Task<bool> ExistsAsync<T>(this T connection, string tableViewName, string columnName, Dictionary<string, object> whereParams, int timeout = 30) where T : DbConnection
         {
-            var sSql = $"SELECT {columnName} from {tableViewName}";
+            var databaseScript = $"SELECT {columnName} from {tableViewName}";
 
             var comm = connection.CreateCommand();
             comm.CommandType = CommandType.Text;
             comm.CommandTimeout = timeout;
 
             if (whereParams != null && whereParams.Count > 0)
-                sSql += comm.BuildWhere(whereParams);
+                databaseScript += comm.BuildWhere(whereParams);
 
-            comm.CommandText = sSql;
+            comm.CommandText = databaseScript;
 
 
             var result = await Task.Factory.StartNew<DataTable>(() =>
@@ -493,7 +493,7 @@ namespace System.Data.Common
                 }
                 catch (Exception ex)
                 {
-                    var message = String.Format("Error occured running the query: {0}", sSql);
+                    var message = String.Format("Error occured running the query: {0}", databaseScript);
 
                     throw new Exception(message, ex);
                 }
@@ -506,7 +506,7 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// Inserts one data item as an asynchronous operation, without needing datbase script 
+        /// Inserts one data item as an asynchronous operation, without needing database script 
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
@@ -514,56 +514,16 @@ namespace System.Data.Common
         /// <param name="idColumn">The identifier column name</param>
         /// <param name="idValue">The identifier value name</param>
         /// <param name="valueColumn">The value column name</param>
-        /// <param name="value">The value.</param>
+        /// <param name="value">The value to insert</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
         public static async Task InsertOneAsync<T>(this T connection, string tableViewName, string idColumn, object idValue, string valueColumn, object value, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
         {
-            var sSql = $"INSERT INTO {tableViewName} ({idColumn}, {valueColumn}) values (@Param1, @Param2)";
+            var databaseScript = $"INSERT INTO {tableViewName} ({idColumn}, {valueColumn}) values (@Param1, @Param2)";
 
             var comm = connection.CreateCommand();
             comm.CommandType = CommandType.Text;
-            comm.CommandText = sSql;
-            comm.CommandTimeout = timeout;
-
-            var par1 = comm.CreateParameter();
-            par1.ParameterName = "@Param1";
-            par1.Value = value;
-            comm.Parameters.Add(par1);
-
-            var par2 = comm.CreateParameter();
-            par2.ParameterName = "@Param2";
-            par2.Value = value;
-            comm.Parameters.Add(par2);
-
-            if (transaction != null)
-                comm.Transaction = transaction;
-
-            await comm.ExecuteNonQueryAsync();
-
-        }
-
-        /// <summary>
-        /// Updates one data item as an asynchronous operation, without needing datbase script 
-        /// </summary>
-        /// <typeparam name="T">DBConnection sub-class</typeparam>
-        /// <param name="connection">The connection object</param>
-        /// <param name="tableViewName">Name of the table or view</param>
-        /// <param name="idColumn">The identifier column</param>
-        /// <param name="idValue">The identifier value name</param>
-        /// <param name="valueColumn">The value column name</param>
-        /// <param name="value">The value</param>
-        /// <param name="timeout">The timeout</param>
-        /// <param name="transaction">Optional transaction</param>
-        public static async Task UpdateOneAsync<T>(this T connection, string tableViewName, string idColumn, object idValue, string valueColumn, object value, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
-        {
-            var sSql = $"UPDATE {tableViewName}";
-            sSql += $" SET {idColumn} = @Param2";
-            sSql += $" WHERE {idColumn} = @Param1";
-
-            var comm = connection.CreateCommand();
-            comm.CommandType = CommandType.Text;
-            comm.CommandText = sSql;
+            comm.CommandText = databaseScript;
             comm.CommandTimeout = timeout;
 
             var par1 = comm.CreateParameter();
@@ -584,14 +544,54 @@ namespace System.Data.Common
         }
 
         /// <summary>
-        /// Inserts multiple data items into the specified tables and columns as an asynchronous operation, without needing datbase script
+        /// Updates one data item as an asynchronous operation, without needing database script 
+        /// </summary>
+        /// <typeparam name="T">DBConnection sub-class</typeparam>
+        /// <param name="connection">The connection object</param>
+        /// <param name="tableViewName">Name of the table or view</param>
+        /// <param name="idColumn">The identifier column</param>
+        /// <param name="idValue">The identifier value name</param>
+        /// <param name="valueColumn">The value column name</param>
+        /// <param name="value">The value</param>
+        /// <param name="timeout">The timeout</param>
+        /// <param name="transaction">Optional transaction</param>
+        public static async Task UpdateOneAsync<T>(this T connection, string tableViewName, string idColumn, object idValue, string valueColumn, object value, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
+        {
+            var databaseScript = $"UPDATE {tableViewName}";
+            databaseScript += $" SET {valueColumn} = @Param2";
+            databaseScript += $" WHERE {idColumn} = @Param1";
+
+            var comm = connection.CreateCommand();
+            comm.CommandType = CommandType.Text;
+            comm.CommandText = databaseScript;
+            comm.CommandTimeout = timeout;
+
+            var par1 = comm.CreateParameter();
+            par1.ParameterName = "@Param1";
+            par1.Value = idValue;
+            comm.Parameters.Add(par1);
+
+            var par2 = comm.CreateParameter();
+            par2.ParameterName = "@Param2";
+            par2.Value = value;
+            comm.Parameters.Add(par2);
+
+            if (transaction != null)
+                comm.Transaction = transaction;
+
+            await comm.ExecuteNonQueryAsync();
+
+        }
+
+        /// <summary>
+        /// Inserts multiple data items into the specified tables and columns as an asynchronous operation, without needing database script
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="idColumn">The identifier column</param>
         /// <param name="idValue">The identifier value</param>
-        /// <param name="data">The data dictionary</param>
+        /// <param name="data">The data dictionary, string = ColumnName, object = value</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
         /// <exception cref="Exception">You must provide a non-null, non-empty dictionary to InsertManyAsync</exception>
@@ -641,21 +641,21 @@ namespace System.Data.Common
 
 
             //build the insert sql
-            var sSql = $"INSERT INTO {tableViewName} ";
+            var databaseScript = $"INSERT INTO {tableViewName} ";
 
-            var colsSql = "(";
+            var coldatabaseScript = "(";
 
-            colsSql += String.Join(",", colNames);
+            coldatabaseScript += String.Join(",", colNames);
 
-            colsSql += ") values (";
+            coldatabaseScript += ") values (";
 
-            colsSql += string.Join(",", parsList);
+            coldatabaseScript += string.Join(",", parsList);
 
-            colsSql += ")";
+            coldatabaseScript += ")";
 
-            sSql += colsSql;
+            databaseScript += coldatabaseScript;
 
-            comm.CommandText = sSql;
+            comm.CommandText = databaseScript;
 
             if (transaction != null)
                 comm.Transaction = transaction;
@@ -670,7 +670,7 @@ namespace System.Data.Common
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
-        /// <param name="data">The data dictionary</param>
+        /// <param name="data">The data dictionary, string = ColumnName, object = value</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
         /// <exception cref="Exception">You must provide a non-null, non-empty dictionary to InsertManyAsync</exception>
@@ -715,21 +715,21 @@ namespace System.Data.Common
 
 
             //build the insert sql
-            var sSql = $"INSERT INTO {tableViewName} ";
+            var databaseScript = $"INSERT INTO {tableViewName} ";
 
-            var colsSql = "(";
+            var coldatabaseScript = "(";
 
-            colsSql += String.Join(",", colNames);
+            coldatabaseScript += String.Join(",", colNames);
 
-            colsSql += ") values (";
+            coldatabaseScript += ") values (";
 
-            colsSql += string.Join(",", parsList);
+            coldatabaseScript += string.Join(",", parsList);
 
-            colsSql += ")";
+            coldatabaseScript += ")";
 
-            sSql += colsSql;
+            databaseScript += coldatabaseScript;
 
-            comm.CommandText = sSql;
+            comm.CommandText = databaseScript;
 
             if (transaction != null)
                 comm.Transaction = transaction;
@@ -746,7 +746,7 @@ namespace System.Data.Common
         /// <param name="tableViewName">Name of the table or view</param>
         /// <param name="idColumn">The identifier column</param>
         /// <param name="idValue">The identifier value</param>
-        /// <param name="data">The data dictionary</param>
+        /// <param name="data">The data dictionary, string = ColumnName, object = value</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
         /// <exception cref="Exception">You must provide a non-null, non-empty dictionary to UpdateManyAsync</exception>
@@ -768,7 +768,7 @@ namespace System.Data.Common
 
             parsLoop = 2;
 
-            var sSql = $"UPDATE {tableViewName} SET ";
+            var databaseScript = $"UPDATE {tableViewName} SET ";
 
             var parsList = new List<String>();
 
@@ -788,11 +788,11 @@ namespace System.Data.Common
                 parsLoop++;
             }
 
-            sSql += string.Join(",", parsList);
+            databaseScript += string.Join(",", parsList);
 
-            sSql += $" WHERE {idColumn} = @Param1";
+            databaseScript += $" WHERE {idColumn} = @Param1";
 
-            comm.CommandText = sSql;
+            comm.CommandText = databaseScript;
 
             if (transaction != null)
                 comm.Transaction = transaction;
@@ -807,8 +807,8 @@ namespace System.Data.Common
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="connection">The connection object</param>
         /// <param name="tableViewName">Name of the table or view</param>
-        /// <param name="whereParams">The where parameters.</param>
-        /// <param name="data">The data dictionary</param>
+        /// <param name="whereParams">The where parameter dictionary, string = ColumnName, object = value</param>
+        /// <param name="data">The data dictionary, string = ColumnName, object = value</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
         /// <exception cref="Exception">You must provide a non-null, non-empty dictionary to UpdateManyAsync</exception>
@@ -823,7 +823,7 @@ namespace System.Data.Common
 
             var parsLoop = 1;
 
-            var sSql = $"UPDATE {tableViewName} SET ";
+            var databaseScript = $"UPDATE {tableViewName} SET ";
 
             var parsList = new List<String>();
 
@@ -843,12 +843,12 @@ namespace System.Data.Common
                 parsLoop++;
             }
 
-            sSql += string.Join(",", parsList);
+            databaseScript += string.Join(",", parsList);
 
             if (whereParams != null && whereParams.Count > 0)
-                sSql += comm.BuildWhere(whereParams);
+                databaseScript += comm.BuildWhere(whereParams);
 
-            comm.CommandText = sSql;
+            comm.CommandText = databaseScript;
 
             if (transaction != null)
                 comm.Transaction = transaction;
@@ -863,12 +863,12 @@ namespace System.Data.Common
         /// </summary>
         /// <typeparam name="T">Sub-class of DbConnection</typeparam>
         /// <param name="connection">The connection object</param>
-        /// <param name="sSql">The SQL to execute</param>
+        /// <param name="databaseScript">The SQL to execute</param>
         /// <param name="pars">The parameters</param>
         /// <param name="commandType">Type of the command</param>
         /// <param name="timeout">The timeout</param>
         /// <returns>Task&lt;DataSet&gt;.</returns>
-        public static async Task<DataSet> QueryDataSetAsync<T>(this T connection, string sSql, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30) where T : DbConnection
+        public static async Task<DataSet> QueryDataSetAsync<T>(this T connection, string databaseScript, List<DbParameter> pars = null, CommandType commandType = CommandType.Text, int timeout = 30) where T : DbConnection
         {
             if (connection.State != ConnectionState.Open)
             {
@@ -877,7 +877,7 @@ namespace System.Data.Common
 
             var newCmq = connection.CreateCommand();
             newCmq.CommandType = commandType;
-            newCmq.CommandText = sSql;
+            newCmq.CommandText = databaseScript;
             newCmq.CommandTimeout = timeout;
 
             if (pars != null)
@@ -898,7 +898,7 @@ namespace System.Data.Common
                 }
                 catch (Exception ex)
                 {
-                    var message = String.Format("Error occured running the query: {0}", sSql);
+                    var message = String.Format("Error occured running the query: {0}", databaseScript);
 
                     throw new AggregateException(message, ex);
                 }
@@ -942,7 +942,7 @@ namespace System.Data.Common
         /// </summary>
         /// <typeparam name="T">DBConnection sub-class</typeparam>
         /// <param name="command">The command object</param>
-        /// <param name="whereParams">The where parameters dictionary where string is the column name and object is the value</param>
+        /// <param name="whereParams">The where parameter dictionary, string = ColumnName, object = value</param>
         /// <returns>System.String.</returns>
         private static string BuildWhere<T>(this T command, Dictionary<string, object> whereParams) where T : DbCommand
         {
