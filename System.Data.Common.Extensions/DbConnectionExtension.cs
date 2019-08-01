@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace System.Data.Common
 {
     /// <summary>
-    /// Extensions for DbConnection and Derivatives
+    /// Extensions for DbConnection and sub-classses
     /// </summary>
     public static class DbConnectionExtension
     {

@@ -4,9 +4,14 @@ using System.Text;
 
 namespace System.Data
 {
+    /// <summary>
+    /// DataRow Extensions.
+    /// </summary>
     public static class DataRowExtensions
     {
-        /// <summary>When the value is not null or empty call the action and pass the column.</summary>
+        /// <summary>
+        /// When the value is not null or empty call the action and pass the column.
+        /// </summary>
         /// <param name="row">The row of data to work on</param>
         /// <param name="columnName">The name of the column</param>
         /// <param name="action">The action to perform if valid</param>

@@ -4,13 +4,16 @@ using System.Text;
 
 namespace System
 {
+    /// <summary>
+    /// DbParameter Date Extensions.
+    /// </summary>
     public static class DateDbParameterExtensions
     {
         /// <summary>
         /// Returns the DateTime?.Value or DbNull.Value if there is no value
         /// </summary>
         /// <param name="target">The DateTime object to process</param>
-        /// <returns></returns>
+        /// <returns>System.Object.</returns>
         public static object AsValueOrDbNull(this DateTime? target)
         {
             if (!target.HasValue)
