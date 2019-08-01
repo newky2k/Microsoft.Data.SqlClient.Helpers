@@ -160,7 +160,7 @@ namespace System.Data.Common
         /// <param name="data">The data dictionary, string = ColumnName, object = value</param>
         /// <param name="timeout">The timeout</param>
         /// <param name="transaction">Optional transaction</param>
-        /// <exception cref="Exception">You must provide a non-null, non-empty dictionary to InsertManyAsync</exception>
+        /// <exception cref="Exception">You must provide a non-null, non-empty dictionary to InsertMany</exception>
         public static void InsertMany<T>(this T connection, string tableViewName, Dictionary<string, object> data, int timeout = 30, DbTransaction transaction = null) where T : DbConnection
         {
             if (data == null && data.Count == 0)
