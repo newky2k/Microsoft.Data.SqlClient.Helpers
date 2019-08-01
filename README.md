@@ -73,3 +73,102 @@ This will try a return the Connection string in the following order
 ### DataConnection
 `DataConnection` is a SqlClient based class that provides simplified access to a MS Sql database connection with an easy to use API
 
+Creating a new instance is fairly simple
+
+    using (var aDc = new DataConnection(DataConnectionStringManager.GetConnectionString("Default")))
+    {
+
+    }
+
+
+#### SQL Methods
+There are a number of standard SQL execution methods that allow you to run and execute SQL script on the SQL Server.
+
+Note: `DataConnection` will handle opening and connecting to the server itself, you don't need to explicitly do it
+
+This is a simple query that returns a DataTable with the results of the query
+
+    using (var aDc = new DataConnection(DataConnectionStringManager.GetConnectionString("Default")))
+    {
+        var dtresults = await aDc.QueryAsync("Select * from Customers");
+    }
+
+This is the same query with a list of parameters and a where statement
+
+
+    using (var aDc = new DataConnection(DataConnectionStringManager.GetConnectionString("Default")))
+    {
+        var pars = new List<DbParameter>()
+        {
+            new SqlParameter("@CustomerId",12345)
+        };
+
+        var sSql = "Select * from Customers";
+        sSql += " WHERE CustomerId = @CustomerId";
+
+
+        var dtresults = await aDc.QueryAsync(sSql, pars);
+    }
+
+You can also query a stored procedure and return the results
+
+    using (var aDc = new DataConnection(DataConnectionStringManager.GetConnectionString("Default")))
+    {
+        var pars2 = new List<DbParameter>()
+        {
+            new SqlParameter("@CustomerId",12345)
+        };
+
+        var dtresults2 = await aDc.QueryAsync("GetCustomerInvoices", pars, CommandType.StoredProcedure);
+    }
+
+Executing SQL statements is also as simple:
+
+    using (var aDc = new DataConnection(DataConnectionStringManager.GetConnectionString("Default")))
+    {
+        var pars3 = new List<DbParameter>()
+        {
+            new SqlParameter("@CustomerId",12345),
+            new SqlParameter("@OrderNo",12345),
+            new SqlParameter("@OrderStatus", "Confirmed"),
+        };
+
+        await aDc.ExecuteAsync("UpdateOrderStatus", pars3, CommandType.StoredProcedure);
+    }
+
+#### Non-SQL Methods
+`DataConnection` also provides some non-sql methods for inserting and updating data without writing SQL at all.
+
+`DataConnection.UpdateManyAsync` allows you to provide a dictionary of columns and values to update, along with a dictionary for filtering the records to be updated, which can be used to update the specific table without writing SQL script
+
+    using (var aDc = new DataConnection(DataConnectionStringManager.GetConnectionString("Default")))
+    {
+        var dict = new Dictionary<string, object>();
+        dict.Add("LastUpdated", DateTime.Now);
+        dict.Add("UpdatedById", allocatedById);
+
+        aTran = DataConnection.BeginTransaction();
+
+        var wheredict = new Dictionary<string, object>();
+        wheredict.Add("DatabaseName", databaseName);
+        wheredict.Add("Tran_Number", transactionId);
+
+        await DataConnection.UpdateManyAsync("JobExpenses", wheredict, dict, transaction: aTran);
+
+        aTran.Commit();
+    }
+
+## Extensions
+
+There are a number of extensions that help we passing values through to the database, as parameters.  
+
+- `DateTime.AsValueOrDbNull`
+  - Will return DBNull.Value if the DateTime? object has no value
+- `DataRow.WhenValid`
+  - Simplified convert a column value to a real value
+- `NameValueCollection.ValueAsInt`
+  - Returns the value as int if its not null and can be converted to an int
+- `string.AsValueOrDbNull`
+  - Return a DBNull.Value if the string is empty, null or whitespace or the value otherwise
+- `string.AsValueOrDefault`
+  - Returns the default value if the string is empty, null or whitespace or the value otherwise

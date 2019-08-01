@@ -1,7 +1,12 @@
-﻿using Microsoft.Data.SqlClient.Helpers;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient.Helpers;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Common;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace SqlHelperSample
 {
@@ -9,7 +14,7 @@ namespace SqlHelperSample
     {
         private static IConfigurationRoot _config;
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var builder = new ConfigurationBuilder()
            .SetBasePath(Directory.GetCurrentDirectory())
@@ -30,7 +35,32 @@ namespace SqlHelperSample
 
             using (var aDc = new DataConnection(DataConnectionStringManager.GetConnectionString("Default")))
             {
-                var dtresults = aDc.QueryAsync("Select * from Customers");
+                var pars = new List<DbParameter>()
+                {
+                   new SqlParameter("@CustomerId",12345)
+                };
+
+                var sSql = "Select * from Customers";
+                sSql += " WHERE CustomerId = @CustomerId";
+
+
+                var dtresults = await aDc.QueryAsync(sSql, pars);
+
+                var pars2 = new List<DbParameter>()
+                {
+                   new SqlParameter("@CustomerId",12345)
+                };
+
+                var dtresults2 = await aDc.QueryAsync("GetCustomerInvoices", pars, CommandType.StoredProcedure);
+
+                var pars3 = new List<DbParameter>()
+                {
+                   new SqlParameter("@CustomerId",12345),
+                   new SqlParameter("@OrderNo",12345),
+                   new SqlParameter("@OrderStatus", "Confirmed"),
+                };
+
+                await aDc.ExecuteAsync("UpdateOrderStatus", pars3, CommandType.StoredProcedure);
             }
 
         }

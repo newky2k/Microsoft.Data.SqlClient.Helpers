@@ -10,7 +10,7 @@ namespace System
     public static class StringDbParameterExtensions
     {
         /// <summary>
-        /// Return a DBNull.Value if the string is empty, null or whitespace or the value otherwise
+        /// Returns a DBNull.Value if the string is empty, null or whitespace or the value otherwise
         /// </summary>
         /// <param name="target">The target.</param>
         /// <returns>System.Object.</returns>
@@ -23,7 +23,7 @@ namespace System
         }
 
         /// <summary>
-        /// Return the default value if the string is empty, null or whitespace or the value otherwise
+        /// Returns the default value if the string is empty, null or whitespace or the value otherwise
         /// </summary>
         /// <param name="target">The target.</param>
         /// <param name="defaultValue">The default value.</param>
