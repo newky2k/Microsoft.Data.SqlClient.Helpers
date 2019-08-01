@@ -13,19 +13,23 @@ namespace Microsoft.Data.SqlClient.Helpers
         /// Gets the instance.
         /// </summary>
         /// <value>The instance.</value>
-        public static DataConnectionStringManager Instance => _instance.Value;
+        private static DataConnectionStringManager Instance => _instance.Value;
 
         /// <summary>
-        /// Gets the connection string.
+        /// Gets or sets the connection string loader function, for returning the correct connection string
         /// </summary>
-        /// <param name="key">The key.</param>
-        /// <returns>System.String.</returns>
-        public static string GetConnectionString(string key)
-        {
-            return Instance[key];
-        }
+        /// <value>The connection string loader.</value>
+        /// <example>
+        /// <code>
+        /// DataConnectionStringManager.Instance.ConnectionStringLoader = (name) =>
+        /// {
+        ///     return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+        /// };
+        /// </code>
+        /// </example>
+        public static Func<string, string> ConnectionStringLoader { get; set; }
 
- 
+
         #region Fields
 
         /// <summary>
@@ -43,56 +47,39 @@ namespace Microsoft.Data.SqlClient.Helpers
         #region Properties
 
         /// <summary>
-        /// Gets or sets the connection string loader function, for returning the correct connection string
-        /// </summary>
-        /// <value>The connection string loader.</value>
-        /// <example>
-        /// <code>
-        /// DataConnectionStringManager.Instance.ConnectionStringLoader = (name) =>
-        /// {
-        ///     return ConfigurationManager.ConnectionStrings[name].ConnectionString;
-        /// };
-        /// </code>
-        /// </example>
-        public Func<string, string> ConnectionStringLoader { get; set; }
-
-        /// <summary>
         /// Gets or sets the connection strings.
         /// </summary>
         /// <value>The registered connection strings</value>
         private Dictionary<string, string> ConnectionStrings { get; set; } = new Dictionary<string, string>();
 
-        /// <summary>
-        /// Gets the connection string for the specified key.
-        /// </summary>
-        /// <param name="key">The key.</param>
-        /// <returns>System.String.</returns>
-        /// <exception cref="Exception">Connection string could not be found</exception>
-        public string this[string key]
-        {
-            get
-            {
-                return ConnectionString(key);
-            }
-        }
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>System.String.</returns>
+        public static string GetConnectionString(string key)
+        {
+            return ConnectionString(key);
+        }
 
         /// <summary>
         /// Add or Update a connection string
         /// </summary>
         /// <param name="key">The connection string key</param>
         /// <param name="connectionString">The connection string.</param>
-        public void Set(string key, string connectionString)
+        public static void SetConnectionString(string key, string connectionString)
         {
-            if (ConnectionStrings.ContainsKey(key))
+            if (Instance.ConnectionStrings.ContainsKey(key))
             {
-                ConnectionStrings[key] = connectionString;
+                Instance.ConnectionStrings[key] = connectionString;
             }
             else
             {
-                ConnectionStrings.Add(key, connectionString);
+                Instance.ConnectionStrings.Add(key, connectionString);
             }
         }
 
@@ -101,19 +88,19 @@ namespace Microsoft.Data.SqlClient.Helpers
         /// </summary>
         /// <param name="key">The connection string key</param>
         /// <param name="overrideValue">The new connection string</param>
-        public void AddOverride(string key, string overrideValue)
+        public static void AddOverride(string key, string overrideValue)
         {
-            if (_overrides.ContainsKey(key))
+            if (Instance._overrides.ContainsKey(key))
             {
                 if (!string.IsNullOrWhiteSpace(overrideValue))
-                    _overrides[key] = overrideValue;
+                    Instance._overrides[key] = overrideValue;
                 else
-                    _overrides.Remove(key);
+                    Instance._overrides.Remove(key);
             }
             else
             {
                 if (!string.IsNullOrWhiteSpace(overrideValue))
-                    _overrides.Add(key, overrideValue);
+                    Instance._overrides.Add(key, overrideValue);
             }
         }
 
@@ -123,11 +110,11 @@ namespace Microsoft.Data.SqlClient.Helpers
         /// <param name="key">The connection string key</param>
         /// <returns>System.String.</returns>
         /// <exception cref="Exception">Connection string could not be found</exception>
-        private string ConnectionString(string key)
+        private static string ConnectionString(string key)
         {
             var conString = String.Empty;
 
-            var theKey = (_overrides.ContainsKey(key)) ? _overrides[key] : key;
+            var theKey = (Instance._overrides.ContainsKey(key)) ? Instance._overrides[key] : key;
 
             if (ConnectionStringLoader != null)
             {
@@ -136,10 +123,10 @@ namespace Microsoft.Data.SqlClient.Helpers
 
             if (string.IsNullOrWhiteSpace(conString))
             {
-                if (_overrides.ContainsKey(theKey))
-                    return _overrides[theKey];
-                else if (ConnectionStrings.ContainsKey(theKey))
-                    return ConnectionStrings[theKey];
+                if (Instance._overrides.ContainsKey(theKey))
+                    return Instance._overrides[theKey];
+                else if (Instance.ConnectionStrings.ContainsKey(theKey))
+                    return Instance.ConnectionStrings[theKey];
 
                 throw new Exception($"Connection string for key: {key} could not be found");
             }

@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Data.Common.Extensions", "System.Data.Common.Extensions\System.Data.Common.Extensions.csproj", "{366AA683-57AF-4665-9E4A-96E6043B5A24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.Data.SqlClient.Helpers", "Microsoft.Data.SqlClient.Helpers\Microsoft.Data.SqlClient.Helpers.csproj", "{1105B4A5-5E2F-4A23-A5EF-1FD684A671C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Data.SqlClient.Helpers", "Microsoft.Data.SqlClient.Helpers\Microsoft.Data.SqlClient.Helpers.csproj", "{1105B4A5-5E2F-4A23-A5EF-1FD684A671C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlHelperSample", "SqlHelperSample\SqlHelperSample.csproj", "{25FC0DDD-5429-46DB-8C1F-79544F7C7B56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{1105B4A5-5E2F-4A23-A5EF-1FD684A671C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1105B4A5-5E2F-4A23-A5EF-1FD684A671C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1105B4A5-5E2F-4A23-A5EF-1FD684A671C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25FC0DDD-5429-46DB-8C1F-79544F7C7B56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25FC0DDD-5429-46DB-8C1F-79544F7C7B56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25FC0DDD-5429-46DB-8C1F-79544F7C7B56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25FC0DDD-5429-46DB-8C1F-79544F7C7B56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
