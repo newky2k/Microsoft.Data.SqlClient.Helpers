@@ -16,11 +16,6 @@
     <Product>DSoft.Microsoft.Data.SqlClient.Helpers</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
-    <DocumentationFile>D:\Development\External\Microsoft.Data.SqlClient.Helpers\Microsoft.Data.SqlClient.Helpers\Microsoft.Data.SqlClient.Helpers.xml</DocumentationFile>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="1.0.19249.1" />
   </ItemGroup>

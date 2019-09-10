@@ -14,11 +14,7 @@
     <Product>DSoft.System.Data.Common.Extensions</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
-    <DocumentationFile>D:\Development\External\Microsoft.Data.SqlClient.Helpers\System.Data.Common.Extensions\System.Data.Common.Extensions.xml</DocumentationFile>
-  </PropertyGroup>
-
+ 
   <ItemGroup>
     <PackageReference Include="System.Data.Odbc" Version="4.6.0-preview9.19421.4" />
   </ItemGroup>
