@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Data.Common.Extensions</name>
+    </assembly>
+    <members>
+        <member name="T:System.Data.DataRowExtensions">
+            <summary>
+            DataRow Extensions.
+            </summary>
+        </member>
+        <member name="M:System.Data.DataRowExtensions.WhenValid(System.Data.DataRow,System.String,System.Action{System.Object})">
+            <summary>
+            When the value is not null or empty call the action and pass the column.
+            </summary>
+            <param name="row">The row of data to work on</param>
+            <param name="columnName">The name of the column</param>
+            <param name="action">The action to perform if valid</param>
+        </member>
+        <member name="M:System.Data.DataRowExtensions.WhenValid(System.Data.DataRow,System.String,System.Object,System.Object)">
+            <summary>
+            When the value is not null or empty set the old value to be the new value
+            </summary>
+            <param name="row">The row of data to work on</param>
+            <param name="columnName">The name of the column</param>
+            <param name="oldValue">The old value</param>
+            <param name="newValue">The new value</param>
+        </member>
+        <member name="T:System.Data.Common.DbConnectionExtension">
+            <summary>
+            Extensions for DbConnection and sub-classses
+            </summary>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.DoesTableViewExist``1(``0,System.String)">
+            <summary>
+            Checks if the table or view exists
+            </summary>
+            <typeparam name="T">Sub-class of DbConnection</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view.</param>
+            <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.Execute``1(``0,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},System.Data.CommandType,System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes the database script
+            </summary>
+            <typeparam name="T">Sub-class of DbConnection</typeparam>
+            <param name="connection">The connection. object</param>
+            <param name="databaseScript">The database script to execute</param>
+            <param name="pars">The parameters</param>
+            <param name="commandType">Type of the command</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.ExecuteScalar``1(``0,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},System.Data.CommandType,System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes the query and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="databaseScript">The database script to execute</param>
+            <param name="pars">The parameters</param>
+            <param name="commandType">Type of the command</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.Query``1(``0,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},System.Data.CommandType,System.Int32)">
+            <summary>
+            Runs the specified database script and returns a DataTable with the results
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="databaseScript">The database script to execute</param>
+            <param name="pars">The parameters</param>
+            <param name="commandType">Type of the command</param>
+            <param name="timeout">The timeout</param>
+            <returns>DataTable.</returns>
+            <exception cref="T:System.AggregateException"></exception>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.InsertMany``1(``0,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Inserts multiple data items into the specified tables and columns without needing database script
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="data">The data dictionary, string = ColumnName, object = value</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+            <exception cref="T:System.Exception">You must provide a non-null, non-empty dictionary to InsertMany</exception>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.GetDataTableSchemaFromTable``1(``0,System.String,System.Data.Common.DbTransaction)">
+            <summary>
+            Gets the DataTable schema from table.
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="transaction">Optional transaction</param>
+            <returns>DataTable</returns>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.ExecuteAsync``1(``0,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},System.Data.CommandType,System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes the database script as an asynchronous operation.
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="databaseScript">The database script to execute</param>
+            <param name="pars">The parameters</param>
+            <param name="commandType">Type of the command</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.ExecuteScalarAsync``1(``0,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},System.Data.CommandType,System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes the query as an asynchronous operation and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored. 
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="databaseScript">The database script to execute</param>
+            <param name="pars">The parameters</param>
+            <param name="commandType">Type of the command</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+            <returns>Task&lt;System.Object&gt;.</returns>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.ExecuteInsertAsync``1(``0,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},System.Data.CommandType,System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Executes an insert as an asynchronous operation and returns the first column of the first row as an int
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="databaseScript">The database script to execute</param>
+            <param name="pars">The parameters</param>
+            <param name="commandType">Type of the command</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+            <returns>Task&lt;System.Int32&gt;.</returns>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.QueryAsync``1(``0,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},System.Data.CommandType,System.Int32)">
+            <summary>
+            Runs the specified database script as an asynchronous operation and returns a DataTable with the results
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="databaseScript">The database script to execute</param>
+            <param name="pars">The parameters</param>
+            <param name="commandType">Type of the command</param>
+            <param name="timeout">The timeout</param>
+            <returns>Task&lt;DataTable&gt;.</returns>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.ExistsAsync``1(``0,System.String,System.String,System.Object,System.Int32)">
+            <summary>
+            Checks to see if the record already exists as an asynchronous operation
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="columnName">Name of the column to compare</param>
+            <param name="value">The value to compare</param>
+            <param name="timeout">The timeout</param>
+            <returns>Task&lt;System.Boolean&gt;.</returns>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.ExistsAsync``1(``0,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)">
+            <summary>
+            Checks to see if the record already exists as an asynchronous operation
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="columnName">Name of the column</param>
+            <param name="whereParams">The where parameter dictionary, string = ColumnName, object = value</param>
+            <param name="timeout">The timeout</param>
+            <returns>Task&lt;System.Boolean&gt;.</returns>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.InsertOneAsync``1(``0,System.String,System.String,System.Object,System.String,System.Object,System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Inserts one data item as an asynchronous operation, without needing database script 
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="idColumn">The identifier column name</param>
+            <param name="idValue">The identifier value name</param>
+            <param name="valueColumn">The value column name</param>
+            <param name="value">The value to insert</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.UpdateOneAsync``1(``0,System.String,System.String,System.Object,System.String,System.Object,System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Updates one data item as an asynchronous operation, without needing database script 
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="idColumn">The identifier column</param>
+            <param name="idValue">The identifier value name</param>
+            <param name="valueColumn">The value column name</param>
+            <param name="value">The value</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.InsertManyAsync``1(``0,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Inserts multiple data items into the specified tables and columns as an asynchronous operation, without needing database script
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="idColumn">The identifier column</param>
+            <param name="idValue">The identifier value</param>
+            <param name="data">The data dictionary, string = ColumnName, object = value</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+            <exception cref="T:System.Exception">You must provide a non-null, non-empty dictionary to InsertManyAsync</exception>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.InsertManyAsync``1(``0,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Inserts multiple data items into the specified tables and columns as an asynchronous operation, without needing datbase script
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="data">The data dictionary, string = ColumnName, object = value</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+            <exception cref="T:System.Exception">You must provide a non-null, non-empty dictionary to InsertManyAsync</exception>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.UpdateManyAsync``1(``0,System.String,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Update multiple data items in the specified tables and columns as an asynchronous operation, without needing datbase script
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="idColumn">The identifier column</param>
+            <param name="idValue">The identifier value</param>
+            <param name="data">The data dictionary, string = ColumnName, object = value</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+            <exception cref="T:System.Exception">You must provide a non-null, non-empty dictionary to UpdateManyAsync</exception>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.UpdateManyAsync``1(``0,System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32,System.Data.Common.DbTransaction)">
+            <summary>
+            Update multiple data items in the specified tables and columns as an asynchronous operation, without needing datbase script
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="tableViewName">Name of the table or view</param>
+            <param name="whereParams">The where parameter dictionary, string = ColumnName, object = value</param>
+            <param name="data">The data dictionary, string = ColumnName, object = value</param>
+            <param name="timeout">The timeout</param>
+            <param name="transaction">Optional transaction</param>
+            <exception cref="T:System.Exception">You must provide a non-null, non-empty dictionary to UpdateManyAsync</exception>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.QueryDataSetAsync``1(``0,System.String,System.Collections.Generic.List{System.Data.Common.DbParameter},System.Data.CommandType,System.Int32)">
+            <summary>
+            Runs the specified database script as an asynchronous operation and returns the whole DataSet
+            </summary>
+            <typeparam name="T">Sub-class of DbConnection</typeparam>
+            <param name="connection">The connection object</param>
+            <param name="databaseScript">The SQL to execute</param>
+            <param name="pars">The parameters</param>
+            <param name="commandType">Type of the command</param>
+            <param name="timeout">The timeout</param>
+            <returns>Task&lt;DataSet&gt;.</returns>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.CreateDataAdapter``1(``0)">
+            <summary>
+            Creates a data adapter for the specific connection
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="connection">The connection objects</param>
+            <returns>DbDataAdapter.</returns>
+            <exception cref="T:System.ArgumentException">Could not locate factory matching supplied DbConnection;connection</exception>
+        </member>
+        <member name="M:System.Data.Common.DbConnectionExtension.BuildWhere``1(``0,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Builds the where statement
+            </summary>
+            <typeparam name="T">DBConnection sub-class</typeparam>
+            <param name="command">The command object</param>
+            <param name="whereParams">The where parameter dictionary, string = ColumnName, object = value</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="T:System.DateDbParameterExtensions">
+            <summary>
+            DbParameter Date Extensions.
+            </summary>
+        </member>
+        <member name="M:System.DateDbParameterExtensions.AsValueOrDbNull(System.Nullable{System.DateTime})">
+            <summary>
+            Returns the DateTime?.Value or DbNull.Value if there is no value
+            </summary>
+            <param name="target">The DateTime object to process</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="T:System.Collections.Specialized.NameValueCollectionExtensions">
+            <summary>
+            NameValueCollection Extensions
+            </summary>
+        </member>
+        <member name="M:System.Collections.Specialized.NameValueCollectionExtensions.ValueAsInt(System.Collections.Specialized.NameValueCollection,System.String)">
+            <summary>
+            Convert the value to an Int
+            </summary>
+            <param name="target">The NameValueCollection object</param>
+            <param name="key">The key</param>
+            <returns>System.Int32.</returns>
+            <exception cref="T:System.NullReferenceException"></exception>
+            <exception cref="T:System.InvalidCastException"></exception>
+        </member>
+        <member name="T:System.StringDbParameterExtensions">
+            <summary>
+            DbParameter String Extensions.
+            </summary>
+        </member>
+        <member name="M:System.StringDbParameterExtensions.AsValueOrDbNull(System.String)">
+            <summary>
+            Returns a DBNull.Value if the string is empty, null or whitespace or the value otherwise
+            </summary>
+            <param name="target">The target.</param>
+            <returns>System.Object.</returns>
+        </member>
+        <member name="M:System.StringDbParameterExtensions.AsValueOrDefault(System.String,System.String)">
+            <summary>
+            Returns the default value if the string is empty, null or whitespace or the value otherwise
+            </summary>
+            <param name="target">The target.</param>
+            <param name="defaultValue">The default value.</param>
+            <returns>System.Object.</returns>
+        </member>
+    </members>
+</doc>

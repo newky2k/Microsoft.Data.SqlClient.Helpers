@@ -9,7 +9,7 @@
     <Copyright>2019 © Dave Humphreys</Copyright>
     <PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
     <RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
-    <Version>4.6.0.19362-preview7</Version>
+    <Version>4.6.0-preview9.19421.4</Version>
     <PackageId>DSoft.System.Data.Common.Extensions</PackageId>
     <Product>DSoft.System.Data.Common.Extensions</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -20,7 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Data.Odbc" Version="4.6.0-preview7.19362.9" />
+    <PackageReference Include="System.Data.Odbc" Version="4.6.0-preview9.19421.4" />
   </ItemGroup>
 
 </Project>
