@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;net461</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -11,7 +10,7 @@
     <PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
     <RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
     <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
-    <Version>1.0.19249.1</Version>
+    <Version>1.0.19249.2</Version>
     <PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
     <Product>DSoft.Microsoft.Data.SqlClient.Helpers</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
