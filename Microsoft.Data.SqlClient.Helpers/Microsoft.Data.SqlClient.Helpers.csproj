@@ -9,14 +9,14 @@
     <Company>newky2k</Company>
     <PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
     <RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
-    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
-    <Version>1.0.19249.2</Version>
+    <PackageReleaseNotes>Updated to 1.1.2</PackageReleaseNotes>
+    <Version>1.1.2</Version>
     <PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
     <Product>DSoft.Microsoft.Data.SqlClient.Helpers</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.0.19249.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
