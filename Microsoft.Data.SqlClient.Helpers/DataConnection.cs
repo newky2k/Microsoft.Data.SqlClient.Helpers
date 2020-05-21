@@ -513,6 +513,9 @@ namespace Microsoft.Data.SqlClient.Helpers
 
                 if (!conString.Contains("Timeout"))
                 {
+                    if (!conString.EndsWith(";"))
+                        conString += ";";
+
                     conString += String.Format("Connection Timeout={0};", GetGlobalTimeOut(timeout).ToString());
                 }
 
@@ -557,6 +560,9 @@ namespace Microsoft.Data.SqlClient.Helpers
 
                 if (!conString.Contains("Timeout"))
                 {
+                    if (!conString.EndsWith(";"))
+                        conString += ";";
+
                     conString += String.Format("Connection Timeout={0};", GetGlobalTimeOut(timeout).ToString());
                 }
 
