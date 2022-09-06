@@ -1,22 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net461</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net461;net6.0;</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Helpers and extensions for Microsoft.Data.SqlClient</Description>
-    <Copyright>2019 © Dave Humphreys</Copyright>
+    <Copyright>© 2022 DSoft Developments. All rights reserved.</Copyright>
     <PackageLicenseFile></PackageLicenseFile>
     <Authors>newky2k</Authors>
     <Company>newky2k</Company>
     <PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
     <RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
-    <PackageReleaseNotes>Updated to 1.1.2</PackageReleaseNotes>
-    <Version>2.0</Version>
+    <PackageReleaseNotes>- Added support for .Net6.0
+- Signed assembly
+- Updated to latest packages
+	</PackageReleaseNotes>
+    <Version>3.0</Version>
     <PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
-    <Product>DSoft.Microsoft.Data.SqlClient.Helpers</Product>
+	<Product>$(AssemblyName) ($(TargetFramework))</Product>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>DSoft.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
