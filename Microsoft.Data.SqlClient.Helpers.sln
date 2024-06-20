@@ -1,13 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28922.388
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System.Data.Common.Extensions", "System.Data.Common.Extensions\System.Data.Common.Extensions.csproj", "{366AA683-57AF-4665-9E4A-96E6043B5A24}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.Data.SqlClient.Helpers", "Microsoft.Data.SqlClient.Helpers\Microsoft.Data.SqlClient.Helpers.csproj", "{1105B4A5-5E2F-4A23-A5EF-1FD684A671C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlHelperSample", "SqlHelperSample\SqlHelperSample.csproj", "{25FC0DDD-5429-46DB-8C1F-79544F7C7B56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlHelperSample", "SqlHelperSample\SqlHelperSample.csproj", "{25FC0DDD-5429-46DB-8C1F-79544F7C7B56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".ci", ".ci", "{FA094B62-B701-4768-A463-D43352352433}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines-mergetest.yml = azure-pipelines-mergetest.yml
+		azure-pipelines-release.yml = azure-pipelines-release.yml
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
