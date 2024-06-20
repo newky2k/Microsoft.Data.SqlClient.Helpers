@@ -1,31 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net461;net6.0;</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Helpers and extensions for Microsoft.Data.SqlClient</Description>
-    <Copyright>© 2022 DSoft Developments. All rights reserved.</Copyright>
-    <PackageLicenseFile></PackageLicenseFile>
-    <Authors>newky2k</Authors>
-    <Company>newky2k</Company>
-    <PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
-    <PackageReleaseNotes>- Added support for .Net6.0
-- Signed assembly
-- Updated to latest packages
-	</PackageReleaseNotes>
-    <Version>3.0</Version>
-    <PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
-	<Product>$(AssemblyName) ($(TargetFramework))</Product>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>DSoft.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.0" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.1;net462;net6.0;net8.0;</TargetFrameworks>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Description>Helpers and extensions for Microsoft.Data.SqlClient</Description>
+		<Copyright>© 2024 DSoft Developments. All rights reserved.</Copyright>
+		<PackageLicenseFile></PackageLicenseFile>
+		<Authors>newky2k</Authors>
+		<Company>newky2k</Company>
+		<PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
+		<PackageReleaseNotes>- Added support for .NET 8.0
+- Updated to .NET Framework 4.6.2
+		</PackageReleaseNotes>
+		<Version>3.0</Version>
+		<PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
+		<Product>$(AssemblyName) ($(TargetFramework))</Product>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<SignAssembly>True</SignAssembly>
+		<AssemblyOriginatorKeyFile>DSoft.snk</AssemblyOriginatorKeyFile>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\System.Data.Common.Extensions\System.Data.Common.Extensions.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="../README.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\System.Data.Common.Extensions\System.Data.Common.Extensions.csproj" />
+	</ItemGroup>
 
 </Project>
