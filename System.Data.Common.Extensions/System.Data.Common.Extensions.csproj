@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net462;net6.0;net8.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net462;net8.0;net9.0;</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Authors>newky2k</Authors>
 		<Description>Extensions for DbConnection to provide a simple DAL</Description>
@@ -12,9 +12,7 @@
 		<PackageId>DSoft.System.Data.Common.Extensions</PackageId>
 		<Product>$(AssemblyName) ($(TargetFramework))</Product>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReleaseNotes>- Added support for .NET 8.0  
-- Updated to .NET Framework 4.6.2
-		</PackageReleaseNotes>
+		<PackageReleaseNotes>Added support for .NET 9.0, removed .NET 6.0</PackageReleaseNotes>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>DSoft.snk</AssemblyOriginatorKeyFile>
 		<PackageTags>Odbc</PackageTags>
