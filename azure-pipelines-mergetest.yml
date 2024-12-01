@@ -12,6 +12,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  netVersion: '9.x'
 
 steps:  
 - task: NuGetToolInstaller@1
