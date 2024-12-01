@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net462;net6.0;net8.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net462;net8.0;net9.0;</TargetFrameworks>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>Helpers and extensions for Microsoft.Data.SqlClient</Description>
 		<Copyright>© 2024 DSoft Developments. All rights reserved.</Copyright>
@@ -9,9 +9,7 @@
 		<Company>newky2k</Company>
 		<PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
-		<PackageReleaseNotes>- Added support for .NET 8.0
-- Updated to .NET Framework 4.6.2
-		</PackageReleaseNotes>
+		<PackageReleaseNotes>Added support for .NET 9.0, removed .NET 6.0</PackageReleaseNotes>
 		<Version>3.0</Version>
 		<PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
 		<Product>$(AssemblyName) ($(TargetFramework))</Product>
