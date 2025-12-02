@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/.ci/">
+    <File Path="azure-pipelines-mergetest.yml" />
+    <File Path="azure-pipelines-release.yml" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Microsoft.Data.SqlClient.Helpers/Microsoft.Data.SqlClient.Helpers.csproj" />
+  <Project Path="SqlHelperSample/SqlHelperSample.csproj" />
+  <Project Path="System.Data.Common.Extensions/System.Data.Common.Extensions.csproj" />
+</Solution>
