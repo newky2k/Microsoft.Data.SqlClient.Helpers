@@ -1,4 +1,7 @@
 # Microsoft.Data.SqlClient.Helpers
+
+[![Release](https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers/actions/workflows/release.yml)
+
 Data Access Classes and extensions for System.Data.Common and Microsoft.Data.SqlClient
 
 ## Features
