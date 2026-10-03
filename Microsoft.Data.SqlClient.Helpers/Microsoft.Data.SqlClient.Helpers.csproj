@@ -1,30 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net462;net8.0;net9.0;net10.0;</TargetFrameworks>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<Description>Helpers and extensions for Microsoft.Data.SqlClient</Description>
-		<Copyright>© 2024 DSoft Developments. All rights reserved.</Copyright>
-		<PackageLicenseFile></PackageLicenseFile>
-		<Authors>newky2k</Authors>
-		<Company>newky2k</Company>
-		<PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
-		<PackageReleaseNotes>Added support for .NET 10.0</PackageReleaseNotes>
+		<PackageReleaseNotes>Updated to Microsoft.Data.SqlClient 7.1</PackageReleaseNotes>
 		<Version>3.0</Version>
 		<PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
-		<Product>$(AssemblyName) ($(TargetFramework))</Product>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<SignAssembly>True</SignAssembly>
-		<AssemblyOriginatorKeyFile>DSoft.snk</AssemblyOriginatorKeyFile>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="../README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>

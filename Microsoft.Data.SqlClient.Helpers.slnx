@@ -1,7 +1,10 @@
 <Solution>
   <Folder Name="/.ci/">
-    <File Path="azure-pipelines-mergetest.yml" />
-    <File Path="azure-pipelines-release.yml" />
+    <File Path=".github/rulesets/protect-main.json" />
+    <File Path=".github/workflows/ci.yml" />
+    <File Path=".github/workflows/release.yml" />
+    <File Path="CLAUDE.md" />
+    <File Path="Directory.Build.props" />
     <File Path="README.md" />
   </Folder>
   <Project Path="Microsoft.Data.SqlClient.Helpers/Microsoft.Data.SqlClient.Helpers.csproj" />
