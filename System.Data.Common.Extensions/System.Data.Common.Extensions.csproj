@@ -1,29 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.1;net462;net8.0;net9.0;net10.0;</TargetFrameworks>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Authors>newky2k</Authors>
 		<Description>Extensions for DbConnection to provide a simple DAL</Description>
-		<PackageLicenseFile></PackageLicenseFile>
-		<Copyright>© 2026 DSoft Developments. All rights reserved.</Copyright>
-		<PackageProjectUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</PackageProjectUrl>
-		<RepositoryUrl>https://github.com/newky2k/Microsoft.Data.SqlClient.Helpers</RepositoryUrl>
 		<Version>4.7.0.1</Version>
 		<PackageId>DSoft.System.Data.Common.Extensions</PackageId>
-		<Product>$(AssemblyName) ($(TargetFramework))</Product>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReleaseNotes>Added support for .NET 10.0</PackageReleaseNotes>
-		<SignAssembly>True</SignAssembly>
-		<AssemblyOriginatorKeyFile>DSoft.snk</AssemblyOriginatorKeyFile>
+		<PackageReleaseNotes>Updated to latest packages</PackageReleaseNotes>
 		<PackageTags>Odbc</PackageTags>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="../README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="System.Data.Odbc" Version="10.0.0" />
+		<PackageReference Include="System.Data.Odbc" Version="10.0.12" />
 	</ItemGroup>
 </Project>
