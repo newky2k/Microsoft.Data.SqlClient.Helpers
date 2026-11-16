@@ -1,14 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net462;net8.0;net9.0;net10.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net462;net8.0;net9.0;net10.0;net11.0;</TargetFrameworks>
 		<Description>Extensions for DbConnection to provide a simple DAL</Description>
 		<Version>4.7.0.1</Version>
 		<PackageId>DSoft.System.Data.Common.Extensions</PackageId>
-		<PackageReleaseNotes>Updated to latest packages</PackageReleaseNotes>
+		<PackageReleaseNotes>Added .NET 11 support and updated to latest packages</PackageReleaseNotes>
 		<PackageTags>Odbc</PackageTags>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="System.Data.Odbc" Version="10.0.12" />
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net11.0' ">
+		<PackageReference Include="System.Data.Odbc" Version="11.0.0" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" '$(TargetFramework)' != 'net11.0' ">
+		<PackageReference Include="System.Data.Odbc" Version="10.0.15" />
 	</ItemGroup>
 </Project>

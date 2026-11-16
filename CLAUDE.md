@@ -27,7 +27,7 @@ dotnet build Microsoft.Data.SqlClient.Helpers.slnx
 dotnet build Microsoft.Data.SqlClient.Helpers.slnx -c Release
 ```
 
-`SqlHelperSample` targets `net10.0-windows`; on Linux or macOS add `-p:EnableWindowsTargeting=true`. There is no test project.
+Build with the .NET 10 and .NET 11 SDKs installed. `SqlHelperSample` targets `net10.0-windows`; on Linux or macOS add `-p:EnableWindowsTargeting=true`. There is no test project.
 
 ## Architecture
 
@@ -39,7 +39,7 @@ DSoft.System.Data.Common.Extensions        System.Data.Common.Extensions/
 DSoft.Microsoft.Data.SqlClient.Helpers     Microsoft.Data.SqlClient.Helpers/
 ```
 
-Both target `netstandard2.1`, `net462`, `net8.0`, `net9.0` and `net10.0`.
+Both target `netstandard2.1`, `net462`, `net8.0`, `net9.0`, `net10.0` and `net11.0`.
 
 **`DSoft.System.Data.Common.Extensions`**: provider-neutral helpers.
 - `DbConnectionExtension`: extension methods on any `DbConnection` for running scripts and queries (`Execute`, `ExecuteScalar`, `Query`, plus async versions) and for inserting, updating and checking rows without writing SQL (`InsertOneAsync`, `InsertManyAsync`, `UpdateOneAsync`, `ExistsAsync`, ...)

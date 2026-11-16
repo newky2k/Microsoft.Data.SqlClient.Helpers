@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.1;net462;net8.0;net9.0;net10.0;</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net462;net8.0;net9.0;net10.0;net11.0;</TargetFrameworks>
 		<Description>Helpers and extensions for Microsoft.Data.SqlClient</Description>
-		<PackageReleaseNotes>Updated to Microsoft.Data.SqlClient 7.1</PackageReleaseNotes>
+		<PackageReleaseNotes>Added .NET 11 support and updated to Microsoft.Data.SqlClient 7.1.2</PackageReleaseNotes>
 		<Version>3.0</Version>
 		<PackageId>DSoft.Microsoft.Data.SqlClient.Helpers</PackageId>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.2" />
 	</ItemGroup>
 
 	<ItemGroup>
